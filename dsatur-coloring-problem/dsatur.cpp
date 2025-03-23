@@ -120,6 +120,6 @@ void Dsatur(const char* fileName) {
 }
 
 int main() {
-    Dsatur("color4.txt");
+    Dsatur("color2.txt");
     return 0;
 }
