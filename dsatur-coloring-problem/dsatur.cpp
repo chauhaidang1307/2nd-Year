@@ -32,7 +32,7 @@ void Dsatur(const char* fileName) {
     int temp;
     vector<Vertices> Graph(n + 1);
 
-    // Nhập dữ liệu đồ thị
+    //Input các dữ liệu vào biến struct vừa tạo từ file
     for (int i = 1; i <= n; i++) {
         Graph[i] = Vertices(i, 0);
         for (int j = 1; j <= n; j++) {
@@ -44,14 +44,12 @@ void Dsatur(const char* fileName) {
         }
     }
 
-    // Thuật toán DSATUR
     for (int i = 1; i <= n; i++) {
         int max = highestDeg(Graph);
         if (Graph[max].Degrees != 0) {
             int color = 1;
 
-            // Kiểm tra màu sắc đã sử dụng
-            while (true) {
+            while (true) { //Tìm màu không bị cấm để gán cho đỉnh
                 bool found = false;
                 for (int k = 0; k < Graph[max].colorBan.size(); k++) {
                     if (Graph[max].colorBan[k] == color) {
@@ -59,7 +57,7 @@ void Dsatur(const char* fileName) {
                         break;
                     }
                 }
-                if (!found) break; // Nếu màu chưa được sử dụng, thoát vòng lặp
+                if (!found) break;
                 color++;
             }
 
@@ -84,7 +82,7 @@ void Dsatur(const char* fileName) {
     for (int i = 1; i <= n; i++) {
         if (Graph[i].able) {
             int color = 1;
-            while (true) {
+            while (true) { //Tìm màu chưa được sử dụng hoặc không bị cấm
                 bool found = false;
                 for (int k = 0; k < Graph[i].colorBan.size(); k++) {
                     if (Graph[i].colorBan[k] == color) {
@@ -92,7 +90,7 @@ void Dsatur(const char* fileName) {
                         break;
                     }
                 }
-                if (!found) break; // Nếu màu chưa được sử dụng, thoát vòng lặp
+                if (!found) break;
                 color++;
             }
             Graph[i].color = color;
